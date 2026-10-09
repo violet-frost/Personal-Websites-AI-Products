@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  ArrowDownRight, ArrowRight, ArrowUpRight, BrainCircuit, Check,
+  ArrowDownRight, ArrowUpRight, BrainCircuit, Check,
   ChevronDown, Command, Copy, DatabaseZap, ExternalLink, GitBranch,
   Layers3, Mail, MapPin, Menu, Network, Phone, Sparkles, X,
 } from 'lucide-react'
@@ -57,7 +57,7 @@ function Header() {
     <nav className={open ? 'nav nav-open' : 'nav'} aria-label="主导航">
       <a href="#about" onClick={close}>关于我</a><a href="#work" onClick={close}>精选项目</a><a href="#strengths" onClick={close}>个人优势</a>
     </nav>
-    <a className="header-contact" href="#contact">联系我 <ArrowUpRight size={16} strokeWidth={1.8} /></a>
+    <a className="header-contact" href="#contact">联系我</a>
   </header>
 }
 
@@ -96,13 +96,12 @@ function About() {
   return <section className="about section" id="about"><div className="shell">
     <SectionHead overline="ABOUT / 个人经历" title={<>技术与人之间，<br /><em>我选择站在连接处。</em></>} aside="从工业工程与复杂系统研究出发，持续探索 AI 能力如何变成可理解、可验证、可交付的产品。" />
     <div className="about-grid">
-      <div className="portrait-panel"><div className="portrait-frame"><img src="/portrait.jpeg" alt="李泫邑的肖像照" /></div><div className="portrait-label"><span>LI XUANYI</span><span>AI PRODUCT EXPLORER ↗</span></div></div>
+      <div className="portrait-panel"><div className="portrait-frame"><img src="/portrait.jpeg" alt="李泫邑的肖像照" /></div></div>
       <div className="about-content"><div className="about-intro"><span className="small-kicker">HELLO, I'M XUANYI</span><h3>在技术可能性与<br />用户真实需求之间，<br /><span>找到值得做的事。</span></h3><p>现就读于中国科学院大学工程科学学院，研究方向为大数据与应急决策。<br />我关注 AI Native 产品的落地：从梳理问题、定义体验，到搭建 Agent 工作流与验证效果，在实践中把想法推进到可用的原型。</p></div>
         <div className="about-facts"><div><span>现在</span><strong>中国科学院大学 · 硕士在读</strong><small>工业工程与管理 / 2024—2027</small></div><div><span>此前</span><strong>河北工业大学 · 本科</strong><small>工业工程 / 2019—2023</small></div></div>
         <div className="about-contact"><a href={`mailto:${email}`}><Mail size={18} />{email}</a><a href={`tel:${phone}`}><Phone size={17} />{phone}</a><span><MapPin size={17} />北京</span></div>
       </div>
     </div>
-    <div className="project-overview"><div><span>精选项目</span></div><a href="#work" aria-label="浏览精选项目"><ArrowUpRight size={29} /></a></div>
   </div></section>
 }
 
@@ -123,9 +122,8 @@ function DailyVisual() {
 
 function Projects() {
   const [expanded, setExpanded] = useState(null)
-  return <section className="work section" id="work"><div className="shell"><p className="section-overline work-overline">SELECTED WORK / 精选项目</p><p className="work-intro">覆盖学术研究助手、AI 协作游戏开发与个人效率 Agent，关注从需求洞察到落地交付的完整链路。</p>
-    <div className="projects-list">{projects.map((project, index) => <article className={`project-card ${project.className}`} key={project.number}><div className="project-info"><div className="project-meta"><span>{project.number} / {project.type}</span><span>{project.period}</span></div><div className="project-copy"><h3>{project.title}</h3><p className="project-subtitle">{project.subtitle}</p><p className="project-desc">{project.description}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><button className="project-more" onClick={() => setExpanded(expanded === index ? null : index)} aria-expanded={expanded === index}>{expanded === index ? '收起项目概要' : '查看项目概要'} <ArrowUpRight size={19} /></button></div>{index === 0 ? <PaperVisual /> : index === 1 ? <DungeonVisual /> : <DailyVisual />}{expanded === index && <div className="project-detail"><strong>项目概要</strong><p>{project.detail}</p></div>}</article>)}</div>
-    <p className="visual-note">项目配图为基于简历内容绘制的概念示意，详细案例与真实截图将在后续版本补充。</p>
+  return <section className="work section" id="work"><div className="shell"><p className="section-overline work-overline">SELECTED WORK / 精选项目</p><p className="work-intro">覆盖学术研究助手Agent、AI 协作游戏开发与个人效率工作流，关注从需求洞察到落地交付的完整链路。</p>
+    <div className="projects-list">{projects.map((project, index) => <article className={`project-card ${project.className}`} key={project.number}><div className="project-info"><div className="project-meta"><span>{project.number} / {project.type}</span><span>{project.period}</span></div><div className="project-copy"><h3>{project.title}</h3><p className="project-subtitle">{project.subtitle}</p><p className="project-desc">{project.description}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><button className="project-more" onClick={() => setExpanded(expanded === index ? null : index)} aria-expanded={expanded === index}>{expanded === index ? '收起项目概要' : '查看项目概要'}</button></div>{index === 0 ? <PaperVisual /> : index === 1 ? <DungeonVisual /> : <DailyVisual />}{expanded === index && <div className="project-detail"><strong>项目概要</strong><p>{project.detail}</p></div>}</article>)}</div>
   </div></section>
 }
 
@@ -137,13 +135,13 @@ const strengths = [
 ]
 
 function Strengths() {
-  return <section className="strengths section" id="strengths"><div className="shell"><SectionHead overline="WHAT I BRING / 个人优势" title={<>不只理解 AI，<br /><em>更理解怎么把它做好。</em></>} /><div className="strength-grid">{strengths.map(({ icon: Icon, title, en, text, note }) => <article className="strength-card" key={title}><div className="strength-top"><span className="strength-icon"><Icon size={30} strokeWidth={1.5} /></span><ArrowUpRight size={20} strokeWidth={1.5} /></div><div><small>{en}</small><h3>{title}</h3><p>{text}</p></div><div className="strength-note"><span />{note}</div></article>)}</div><div className="strength-bottom"><span>ALWAYS CURIOUS, ALWAYS BUILDING.</span><span>继续探索 AI 产品的下一种可能 <ArrowRight size={18} /></span></div></div></section>
+  return <section className="strengths section" id="strengths"><div className="shell"><SectionHead overline="WHAT I BRING / 个人优势" title={<>不只理解 AI，<br /><em>更理解怎么把它做好。</em></>} /><div className="strength-grid">{strengths.map(({ icon: Icon, title, en, text, note }) => <article className="strength-card" key={title}><div className="strength-top"><span className="strength-icon"><Icon size={30} strokeWidth={1.5} /></span><ArrowUpRight size={20} strokeWidth={1.5} /></div><div><small>{en}</small><h3>{title}</h3><p>{text}</p></div><div className="strength-note"><span />{note}</div></article>)}</div><div className="strength-bottom"><span>ALWAYS CURIOUS, ALWAYS BUILDING.</span></div></div></section>
 }
 
 function Contact() {
   const [copied, setCopied] = useState(false)
   async function copyEmail() { try { await navigator.clipboard.writeText(email); setCopied(true); setTimeout(() => setCopied(false), 2500) } catch { window.location.href = `mailto:${email}` } }
-  return <footer className="contact" id="contact"><div className="contact-glow" /><div className="shell contact-shell"><div className="contact-top"><Brand light /><span>OPEN TO AI PRODUCT OPPORTUNITIES <i /></span></div><div className="contact-main"><p>下一次对话，也许就是新项目的起点。</p><h2>一起做点<br /><em>有意义的事<span>.</span></em></h2><div className="contact-actions"><a className="button button-white" href={`mailto:${email}`}>发送邮件 <ArrowUpRight size={20} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={19} /> : <Copy size={19} />}{copied ? '已复制邮箱' : '复制邮箱地址'}</button></div></div><div className="contact-bottom"><div><a href={`mailto:${email}`}>{email} <ArrowUpRight size={17} /></a><a href={`tel:${phone}`}>{phone} <ArrowUpRight size={17} /></a></div><span>李泫邑 © 2026</span><a href="#top">回到顶部 ↑</a></div></div></footer>
+  return <footer className="contact" id="contact"><div className="contact-glow" /><div className="shell contact-shell"><div className="contact-top"><Brand light /><span>OPEN TO AI PRODUCT OPPORTUNITIES <i /></span></div><div className="contact-main"><p>下一次对话，也许就是新项目的起点。</p><h2>一起做点<br /><em>有意义的事<span>.</span></em></h2><div className="contact-actions"><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={19} /> : <Copy size={19} />}{copied ? '已复制邮箱' : '复制邮箱地址'}</button></div></div><div className="contact-bottom"><div><a href={`mailto:${email}`}>{email} <ArrowUpRight size={17} /></a><a href={`tel:${phone}`}>{phone} <ArrowUpRight size={17} /></a></div><span>李泫邑 © 2026</span><a href="#top">回到顶部 ↑</a></div></div></footer>
 }
 
 export default function App() { return <><Hero /><main><About /><Projects /><Strengths /></main><Contact /></> }

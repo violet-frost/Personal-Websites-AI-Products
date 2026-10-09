@@ -19,8 +19,12 @@
 /* Keep Chinese characters distinct at every text scale. */
 body{letter-spacing:.015em}
 .work-overline{margin-bottom:12px}
-.work-intro{max-width:580px;color:#7d7488;font-size:14px;line-height:1.75;margin:0 0 38px}
-@media(max-width:560px){.work-intro{font-size:11px}}
+.about{padding-bottom:90px}
+.work{padding-top:105px}
+.work-intro{max-width:none;color:#7d7488;font-size:14px;line-height:1.75;margin:0 0 38px;white-space:nowrap}
+@media(max-width:860px){.work-intro{white-space:normal}}
+@media(max-width:800px){.about{padding-bottom:70px}.work{padding-top:85px}}
+@media(max-width:560px){.about{padding-bottom:60px}.work{padding-top:72px}.work-intro{font-size:11px}}
 .brand-name,.about-facts strong,.project-subtitle,.daily-sheet h4{letter-spacing:.01em}
 .hero h1,.section-head h2,.about-intro h3,.project-copy h3,.strength-card h3,.contact-main h2{letter-spacing:.012em}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
